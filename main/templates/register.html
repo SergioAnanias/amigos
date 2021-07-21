@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}Registro{% endblock %}
+
+{% block script %}
+{% endblock %}
+{% block content %}
+<div>
+    <h1 class="text-center">Registre un nuevo usuario</h1>
+    <form class="offset-3 col-6" id="register" name="register" method="POST" action="/new"> {% csrf_token %}
+        <div class="mt-3 form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Ingrese su nombre y apellido"
+                name="name">
+        </div>
+        <div class="form-group">
+            <label for="nickname">Alias</label>
+            <input type="text" class="form-control" id="nickname" placeholder="Ingrese su alias"
+                name="nickname">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su correo" name="email">
+        </div>
+        <div class="row">
+            <div class="form-group col-6 col-sm-12">
+                <label for="password">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña"
+                    name="password">
+            </div>
+            <div class="form-group col-6 col-sm-12">
+                <label for="cpassword">Confirme su contraseña</label>
+                <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirme su contraseña">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dateborn">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="dateborn" placeholder="Ingrese sus Apellidos" name="dateborn">
+        </div>
+        <div class="text-center form-group mt-5">
+            <button class="btn-secondary btn" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Nombre proyecto</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% if not request.session.user %}
+            <li class="nav-item active">
+                <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+            </li>
+            {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Something</a>
+                    <a class="dropdown-item" href="#">Anything</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            {% if request.session.admin == True %}
+            <li class="nav-item">
+                <a class="nav-link" href="admin/">Admin</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% if request.session.user %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-link ">
+                Hola, {{ usuario.alias }}
+            </li>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </form>
+        </ul>
+        {% endif %}
+    </div>
+</nav>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block titulo %}Friends{% endblock %}
+
+{% block script %}
+<!-- $('table').DataTable(); -->
+{% endblock %}
+{% block content %}
+
+<h1>
+    Hola {{ usuario.alias }}
+</h1>
+</br>
+<h5>Acá hay una lista de tus amigos</h5>
+</br>
+<table class="table col-6">
+    <thead>
+        <tr>
+            <th>Alias</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for amigo in amigos %}
+        <tr>
+            <td>
+                <a href="/friends/user/{{ amigo.id }}">
+                    {{ amigo.alias }}
+                </a>
+            </td>
+            <td>
+                <form action="/friends/delete" method="post"> {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ amigo.id }}">
+                    <button type="submit" class="btn btn-danger">Eliminar amigo</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</br>
+<h5>Otros usuarios que no son tus amigos</h5>
+</br>
+<table class="table col-6">
+    <thead>
+        <tr>
+            <th>Alias</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        {% if usuario not in amigos %}
+        <tr>
+            <td>
+                <a href="/friends/user/{{ usuario.id }}">
+                    {{usuario.alias}}
+                </a>
+            </td>
+            <td>
+                <form action="/friends/newfriend" method="post"> {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ usuario.id }}">
+                    <button type="submit" class="btn btn-primary">Agregar nuevo amigo</button>
+                </form>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

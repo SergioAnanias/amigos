@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import *
+from main.models import *
 from django.contrib import messages
 from django.http import JsonResponse
 import bcrypt

@@ -69,11 +69,8 @@ class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=255)
     dateborn = models.DateField()
+    friends= models.ManyToManyField("self", blank=True, null=True)
     permission = models.ForeignKey(Permission, related_name='users', blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects= UserManager()
-    def __str__(self):
-        return f"{self.first_names} {self.last_names}"
-    def __repr__(self):
-        return f"{self.first_names} {self.last_names}"
